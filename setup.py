@@ -1,6 +1,7 @@
 from distutils.core import setup
 
-from .pygridder import __version__
+# Get Version Information
+from pygridder import __version__
 
 setup(
     name='pygridder',
