@@ -15,7 +15,7 @@ class Gridder(object):
     A simple class that uses a KDTree to allow for gridding of points, lines, and polygons on a regular grid.
     
     """
-    def __init__(selfself, tx, ty, dx=np.inf, centered=False):
+    def __init__(self, tx, ty, dx=np.inf, centered=False):
         """
         Create a KDTree lookup object.
 
