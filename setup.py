@@ -1,9 +1,10 @@
 from distutils.core import setup
 
+from .pygridder import __version__
 
 setup(
     name='pygridder',
-    version='1',
+    version=__version__,
     packages=['pygridder'],
     url='',
     license='MIT',
