@@ -7,6 +7,9 @@ import scipy.spatial as ss
 from skimage import draw as skdraw
 
 
+__version__ = "1.0.0"
+
+
 class Gridder(object):
     """
     A simple class that uses a KDTree to allow for gridding of points, lines, and polygons on a regular grid.
