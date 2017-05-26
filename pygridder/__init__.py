@@ -41,7 +41,7 @@ class Gridder(object):
         self.tx = tx
         self.ty = ty
         self.dx = dx
-        self.tpoints = list(zip(self.tx.ravel(), self.ty.ravel()))
+        self.tpoints = np.asarray(list(zip(self.tx.ravel(), self.ty.ravel())))
         self.tree = ss.cKDTree(self.tpoints)
 
 
