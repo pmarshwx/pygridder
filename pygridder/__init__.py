@@ -7,7 +7,7 @@ import scipy.spatial as ss
 from skimage import draw as skdraw
 
 
-__version__ = "1.0.0"
+__version__ = "1.1.0.dev0"
 
 
 class Gridder(object):
