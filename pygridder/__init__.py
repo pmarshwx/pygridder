@@ -120,7 +120,17 @@ class Gridder(object):
             xinds.append(_xinds)
             yinds.append(_yinds)
         if fill:
-            polys = [skdraw.polygon(_x, _y) for _x, _y in zip(xinds, yinds)]
+            polys = []
+            for _x, _y in zip(xinds, yinds):
+                try:
+                    polys.append(skdraw.polygon(_x, _y))
+                except ValueError:
+                    continue
         else:
-            polys = [skdraw.polygon_perimeter(_x, _y) for _x, _y in zip(xinds, yinds)]
+            polys = []
+            for _x, _y in zip(xinds, yinds):
+                try:
+                    polys.append(skdraw.polygon_perimeter(_x, _y))
+                except ValueError:
+                    continue
         return polys
