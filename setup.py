@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 # Get Version Information
 from pygridder import __version__
