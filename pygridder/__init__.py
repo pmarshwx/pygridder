@@ -57,9 +57,9 @@ class Gridder(object):
         except TypeError:
             points = np.array(list(zip([x], [y])))
         dists, inds = self.tree.query(points, k=1, distance_upper_bound=self.dx)
-        bad_inds = np.where(inds >= len(self.tpoints))[0]
-        inds = np.delete(inds, bad_inds)
-        return np.unravel_index(inds, self.tx.shape)
+
+        # Only unravel/return values that are on the grid
+        return np.unravel_index(inds[inds < len(self.tpoints)], self.tx.shape)
 
 
     def make_empty_grid(self, dtype="int"):
