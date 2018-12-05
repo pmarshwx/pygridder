@@ -13,7 +13,7 @@ __version__ = "1.1.0.dev0"
 class Gridder(object):
     """
     A simple class that uses a KDTree to allow for gridding of points, lines, and polygons on a regular grid.
-    
+
     """
     def __init__(self, tx, ty, dx=np.inf, centered=False):
         """
@@ -36,8 +36,6 @@ class Gridder(object):
             y[-1, :] += (ty[-1, :] - ty[-2, :]) / 2.
             tx = x
             ty = y
-            del x
-            del y
         self.tx = tx
         self.ty = ty
         self.dx = dx
@@ -49,10 +47,10 @@ class Gridder(object):
         """
         Internal method to do spatial lookup and remove points outside the domain of the grid.
 
-        :param [number or iterable of numbers] x: x-coordinates to be gridded 
-        :param [number or iterable of numbers] y: y-coordinates to be gridded 
-        :return: Tuple containing x-indices [first return] and y-indices [second return] denoting which 
-                 grid points have "hits" 
+        :param [number or iterable of numbers] x: x-coordinates to be gridded
+        :param [number or iterable of numbers] y: y-coordinates to be gridded
+        :return: Tuple containing x-indices [first return] and y-indices [second return] denoting which
+                 grid points have "hits"
         """
         try:
             points = np.asarray(list(zip(x, y)))
@@ -67,8 +65,8 @@ class Gridder(object):
     def make_empty_grid(self, dtype="int"):
         """
         Create a grid of zeros of the size of the grid used to initialize the gridder.
-        
-        :param dtype dtype: the datatype to use in the construction of the numpy grid; default=integer 
+
+        :param dtype dtype: the datatype to use in the construction of the numpy grid; default=integer
         :return: a numpy grid of zeros of the type provided
         """
         return np.zeros(self.tx.shape, dtype=dtype)
@@ -76,10 +74,10 @@ class Gridder(object):
 
     def grid_points(self, xs, ys):
         """
-        Take a single point or a list of points and return the grid indices that are hits. 
-        
+        Take a single point or a list of points and return the grid indices that are hits.
+
         :param [number or iterable of numbers] xs: x-coordinate(s)
-        :param [number or iterable of numbers] ys: y-coordiante(s) 
+        :param [number or iterable of numbers] ys: y-coordiante(s)
         :return: A list of grid indices corresponding to hits by the supplied points
         """
         xinds, yinds = self._kdtree_query(x=xs, y=ys)
@@ -90,11 +88,11 @@ class Gridder(object):
     def grid_lines(self, sxs, sys, exs, eys):
         """
         Take a single line or list of lines and return the grid indices that are hits.
-        
-        :param [number or iterable of numbers] sxs: starting x-coordinates 
-        :param [number or iterable of numbers] sys: starting y-coordinates 
-        :param [number or iterable of numbers] exs: ending x-coordinates 
-        :param [number or iterable of numbers] eys: ending y-coordinates 
+
+        :param [number or iterable of numbers] sxs: starting x-coordinates
+        :param [number or iterable of numbers] sys: starting y-coordinates
+        :param [number or iterable of numbers] exs: ending x-coordinates
+        :param [number or iterable of numbers] eys: ending y-coordinates
         :return: A list of grid indices corresponding to hits by the lines
         """
         sxinds, syinds = self._kdtree_query(x=sxs, y=sys)
@@ -105,11 +103,11 @@ class Gridder(object):
 
     def grid_polygons(self, xs, ys, fill=True):
         """
-        Take a single polygon or a list of polygons and return the grid indices that are hits. 
+        Take a single polygon or a list of polygons and return the grid indices that are hits.
         If you only want to grid the perimeter, set fill keyward to False.
-        
-        :param [iterable of numbers or iterable of iterables of numbers] xs: x-coordinates 
-        :param [iterable of numbers or iterable of iterables of numbers] ys: y-coordinates 
+
+        :param [iterable of numbers or iterable of iterables of numbers] xs: x-coordinates
+        :param [iterable of numbers or iterable of iterables of numbers] ys: y-coordinates
         :param [bool] fill: flag to determine whether or not to fill. True=Yes; False=No; Default=True
         :return: A list of grid indices corresponding to the hits by the polygons
         """
