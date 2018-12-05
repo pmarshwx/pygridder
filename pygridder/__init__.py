@@ -53,9 +53,9 @@ class Gridder(object):
                  grid points have "hits"
         """
         try:
-            points = np.asarray(list(zip(x, y)))
+            points = np.array(list(zip(x, y)))
         except TypeError:
-            points = np.asarray(list(zip([x], [y])))
+            points = np.array(list(zip([x], [y])))
         dists, inds = self.tree.query(points, k=1, distance_upper_bound=self.dx)
         bad_inds = np.where(inds >= len(self.tpoints))[0]
         inds = np.delete(inds, bad_inds)
